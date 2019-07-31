@@ -1,0 +1,36 @@
+<div class="todos">
+
+  <h1>Todos: New</h1>
+  <div class="new" *ngFor="let todo of todos">
+    <div class="form-group" *ngIf="todo.status == 'pending'">
+      <input type="checkbox" id="{{todo.id}}" #checkbox>
+      <input type="text" id="{{todo.id}}" value="{{todo.text}}">
+      <button class="danger"><i class="fas fa-trash"></i></button>
+    </div>
+  </div>
+
+  <h1>Todos: Done</h1>
+  <div class="done" *ngFor="let todo of todos">
+    <div class="form-group" *ngIf="todo.status == 'completed'">
+      <input type="checkbox" id="{{todo.id}}" checked #checkbox>
+      <input type="text" id="{{todo.id}}" value="{{todo.text}}" disabled>
+      <button class="danger"><i class="fas fa-trash"></i></button>
+    </div>
+  </div>
+
+
+</div>
+
+
+<div class="modal" #modal>
+  <div class="modal-backdrop" #backdrop></div>
+  <div class="modal-content" id="modal-content">
+    <h3>Todo: Add</h3>
+    <input type="text" #inputField>
+    <button class="fab primary" #add>Add</button>
+  </div>
+</div>
+
+<div class="fab-container">
+  <button class="fab primary" #newTodoBtn> <i class="fas fa-plus fa-2x"></i> </button>
+</div>

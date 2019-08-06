@@ -1,8 +1,11 @@
 {
   "name": "todo-app",
   "version": "0.0.1",
-  "author": "mobicure",
-  "contributors": ["Daphnie"],
+  "author": "MOBicure",  
+   "contributors": [
+     "Daphnie Ozioma",
+     "Jerry Ejonavi"
+   ],
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

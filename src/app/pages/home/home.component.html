@@ -1,16 +1,32 @@
-<div class="todos">
+<!-- <nav>
+  <div class="navbar">
+    <ul>
+      <li class="">
+          <a class="brand">MyTodoApp</a>
+      </li>
+      <li class="">
+        <a class="nav-item" href="#new">Scheduled Todo</a>
+      </li>
+      <li class="">
+        <a class="nav-item" href="#done">Completed Todo</a>
+      </li>
+    </ul>       
+      
+  </div>
+</nav>-->
+<div class="todos"> 
 
   <h1>Todos: New</h1>
-  <div class="new" *ngFor="let todo of todos">
+  <div class="new" *ngFor="let todo of todos" id="new">
     <div class="form-group" *ngIf="todo.status == 'pending'">
       <input type="checkbox" placeholder="Do something awesome!" id="{{todo.id}}" #checkbox>
-      <input type="text" id="{{todo.id}}" value="{{todo.text}}">
+      <input type="text" id="{{todo.id}}" value="{{todo.text}}"  >
       <button class="danger"><i class="fas fa-trash"></i></button>
     </div>
   </div>
 
   <h1>Todos: Done</h1>
-  <div class="done" *ngFor="let todo of todos">
+  <div class="done" *ngFor="let todo of todos" id="done">
     <div class="form-group" *ngIf="todo.status == 'completed'">
       <input type="checkbox" placeholder="" id="{{todo.id}}" checked #checkbox>
       <input type="text" id="{{todo.id}}" value="{{todo.text}}" disabled>
@@ -25,12 +41,14 @@
 <div class="modal" #modal>
   <div class="modal-backdrop" #backdrop></div>
   <div class="modal-content" id="modal-content">
-    <h3>Todo: Add</h3>
-    <input type="text" placeholder="Do something awesome!" #inputField>
-    <button class="fab primary" #add>Add</button>
+    <form (submit)="addTodo(inputField.value, $event)" #form>
+      <h3>Todo: Add</h3>
+      <input type="text" placeholder="Do something awesome!" #inputField>
+      <button  class="fab primary" #add>Add</button>
+    </form>
   </div>
 </div>
 
 <div class="fab-container">
-  <button class="fab primary" #newTodoBtn> <i class="fas fa-plus fa-2x"></i> </button>
+  <button class="fab primary"  #newTodoBtn> <i class="fas fa-plus fa-2x"></i> </button>
 </div>

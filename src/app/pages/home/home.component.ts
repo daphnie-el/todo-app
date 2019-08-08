@@ -1,4 +1,14 @@
-import { Component, OnInit, ViewChild, ElementRef, AfterViewInit, ViewChildren } from '@angular/core';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  AfterViewInit,
+  ViewChildren
+} from '@angular/core';
+import {
+  MethodCall
+} from '@angular/compiler';
 
 @Component({
   selector: 'app-home',
@@ -9,19 +19,34 @@ export class HomeComponent implements AfterViewInit, OnInit {
 
   @ViewChildren('checkbox') checkbox;
 
+  @ViewChild('modal', {
+    static: true
+  }) modal: ElementRef;
 
-  @ViewChild('modal', { static: true }) modal: ElementRef;
+  @ViewChild('newTodoBtn', {
+    static: true
+  }) newTodoBtn: ElementRef;
 
-  @ViewChild('newTodoBtn', {static: true}) newTodoBtn: ElementRef;
+  @ViewChild('backdrop', {
+    static: true
+  }) backdrop: ElementRef;
 
-  @ViewChild('backdrop', { static: true }) backdrop: ElementRef;
+  @ViewChild('add', {
+    static: true
+  }) add: ElementRef;
 
-  @ViewChild('add', { static: true }) add: ElementRef;
+  @ViewChild('form', {
+    static: true
+  }) form: ElementRef;
 
+  @ViewChild('inputField', {
+    static: true
+  }) inputField: ElementRef;
+
+  value: string;
   checkboxes: ElementRef[] = [];
 
-  todos: any[] = [
-    {
+  todos: any[] = [{
       id: 1,
       text: 'Did something',
       status: 'completed'
@@ -43,7 +68,7 @@ export class HomeComponent implements AfterViewInit, OnInit {
     },
   ];
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {}
 
@@ -58,6 +83,7 @@ export class HomeComponent implements AfterViewInit, OnInit {
   }
 
   changeStatus(id: number, status: boolean): void {
+    console.log(status);
     switch (status) {
       case true:
         for (const todo of this.todos) {
@@ -102,6 +128,18 @@ export class HomeComponent implements AfterViewInit, OnInit {
     this.backdrop.nativeElement.addEventListener('click', () => {
       this.modal.nativeElement.classList.replace('fade-in', 'fade-out');
     });
+
   }
 
+  addTodo(value: string, event: any) {
+    event.preventDefault();
+    const id = this.todos.length + 1;
+    this.todos.unshift({
+      // id: 5,
+      id,
+      text: value,
+      status: 'pending',
+    });
+    this.form.nativeElement.reset() ;
+  }
 }
